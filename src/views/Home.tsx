@@ -4,6 +4,7 @@ import { ButtonLink, Section } from "@/components/site/ui";
 import { COMMON, FIAME, HOME } from "@/site/content";
 import { pagePath } from "@/site/pages";
 import { SSA, type Lang } from "@/site/ssa";
+import { typo } from "@/site/typo";
 
 export function Home({ lang }: { lang: Lang }) {
   return (
@@ -51,7 +52,7 @@ export function Home({ lang }: { lang: Lang }) {
             <ul className="mt-4 flex flex-wrap justify-center gap-2 md:justify-start">
               <li className="inline-flex items-center gap-2 rounded-full bg-yellow px-4 py-1.5 font-bold text-brand-deep">
                 <CalendarDays className="h-5 w-5" />{" "}
-                {lang === "fr" ? "1er – 5 juin 2027" : "1 – 5 June 2027"}
+                {typo(lang, lang === "fr" ? "1er – 5 juin 2027" : "1 – 5 June 2027")}
               </li>
               <li className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 font-semibold">
                 <MapPin className="h-5 w-5" /> Douala

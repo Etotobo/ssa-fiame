@@ -3,9 +3,12 @@
 // invented: what SSA has not given yet is marked « à compléter » on the page
 // (TODO in the code).
 import type { Lang } from "./ssa";
+import { enTypo, frTypo } from "./typo";
 
 type T = Record<Lang, string>;
-const t = (fr: string, en: string): T => ({ fr, en });
+// every text through the typography of its language (non-breaking spaces,
+// founder 21/11)
+const t = (fr: string, en: string): T => ({ fr: frTypo(fr), en: enTypo(en) });
 
 // ---------------------------------------------------------------- common
 export const COMMON = {
@@ -13,7 +16,7 @@ export const COMMON = {
   bookStand: t("Réserver mon stand", "Book my stand"),
   becomePartner: t("Devenir partenaire", "Become a partner"),
   // Agenda CM integration (founder 21/11)
-  registerVisitor: t("Inscription gratuite via Agenda CM", "Free registration via Agenda CM"),
+  registerVisitor: t("S'inscrire gratuitement", "Register for free"),
   footerRegistration: t("Inscriptions : Agenda CM", "Registration: Agenda CM"),
   buyMagazine: t("Acheter le magazine", "Buy the magazine"),
   buyOnWhatsapp: t("Acheter sur WhatsApp", "Buy on WhatsApp"),
@@ -45,7 +48,7 @@ export const HOME = {
     "Since 2022, Sanitation Safety Association (SSA) has been working for environmental education, nature protection and sustainable development in Cameroon.",
   ),
   fiameTitle: t(
-    "FIAME 2027, 4e Foire Internationale aux Métiers de l'Environnement",
+    "FIAME 2027, 4ᵉ Foire Internationale aux Métiers de l'Environnement",
     "FIAME 2027, 4th International Fair of Environmental Professions",
   ),
   fiameBody: t(
@@ -186,9 +189,11 @@ export const ABOUT = {
 
 // ---------------------------------------------------------------- 3. FIAME 2027
 export const FIAME = {
-  title: t(
-    "FIAME 2027, 4e Foire Internationale aux Métiers de l'Environnement",
-    "FIAME 2027, 4th International Fair of Environmental Professions",
+  // « FIAME 2027 » as the title, the fair's full name below it (founder 21/11)
+  title: t("FIAME 2027", "FIAME 2027"),
+  subtitle: t(
+    "4ᵉ Foire Internationale aux Métiers de l'Environnement",
+    "4th International Fair of Environmental Professions",
   ),
   themeLabel: t("Thème", "Theme"),
   theme: t(
@@ -309,7 +314,7 @@ export const REMINDER = {
     "Inscrivez-vous gratuitement à la FIAME 2027 sur Agenda CM : vous pourrez recevoir un rappel sur WhatsApp la veille de l'ouverture.",
     "Register for FIAME 2027 for free on Agenda CM and you can get a WhatsApp reminder the day before it opens.",
   ),
-  button: t("Être prévenu(e) sur Agenda CM", "Get reminded on Agenda CM"),
+  button: t("Recevoir un rappel", "Get a reminder"),
 };
 
 // ---------------------------------------------------------------- 4. exhibitors
@@ -397,7 +402,8 @@ export function fcfa(n: number, lang: Lang): string {
   return `${s} FCFA`;
 }
 export function standOption(s: Stand, lang: Lang): string {
-  return `Type ${s.type} – ${s.size} m² – ${fcfa(s.price, lang)}`;
+  // the list's options too (founder 21/11): unit and number stay together
+  return `Type\u00a0${s.type} – ${s.size}\u00a0m² – ${fcfa(s.price, lang).replace(" FCFA", "\u00a0FCFA")}`;
 }
 
 /** The pre-filled stand request (texts v1.2). */
@@ -548,7 +554,7 @@ export const PARTNERS = {
     "Associez votre marque à l'économie verte et rencontrez entreprises, institutions et jeunes talents engagés pour l'environnement.",
     "Associate your brand with the green economy and meet companies, institutions and young talent committed to the environment.",
   ),
-  choose: t("Choisir ce pack", "Choose this package"),
+  choose: t("Choisir ce pack", "Choose package"),
   howTitle: t("Comment devenir partenaire ?", "How to become a partner"),
   how: [
     t(
@@ -563,11 +569,8 @@ export const PARTNERS = {
       "Send your HD logo and description by 10 May 2027.",
     ),
   ],
-  contactWa: t(
-    "Contacter l'équipe partenariats sur WhatsApp",
-    "Contact the partnerships team on WhatsApp",
-  ),
-  email: t("Écrire un e-mail", "Send an email"),
+  contactWa: t("Écrire sur WhatsApp", "Message on WhatsApp"),
+  email: t("Envoyer un e-mail", "Send an email"),
   emailSubject: t("Partenariat FIAME 2027", "FIAME 2027 partnership"),
   listTitle: t("Ils nous accompagnent", "Our partners"),
   undefinedPack: t("à définir", "to be defined"),
@@ -630,7 +633,7 @@ export const CONTACT = {
   hoursLabel: t("Joignables", "Available"),
   hours: t("de 7 h 30 à 20 h", "7:30 am to 8 pm"),
   followLabel: t("Suivez-nous", "Follow us"),
-  waButton: t("Écrire sur WhatsApp", "Message us on WhatsApp"),
+  waButton: t("Écrire sur WhatsApp", "Message on WhatsApp"),
   callButton: t("Appeler", "Call"),
   emailButton: t("Envoyer un e-mail", "Send an email"),
   waMessage: t(

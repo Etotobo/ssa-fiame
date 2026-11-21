@@ -12,6 +12,7 @@ import {
   SECTORS,
 } from "./content";
 import { registerLink, waLink, SSA } from "./ssa";
+import { frTypo } from "./typo";
 
 describe("SSA site settings", () => {
   it("page addresses: French at the root, English under /en, both ways", () => {
@@ -81,11 +82,14 @@ describe("SSA site settings", () => {
     for (const t of texts) {
       for (const l of ["fr", "en"] as const) expect(t[l]).not.toMatch(/agenda\.cm/i);
     }
-    expect(COMMON.registerVisitor.fr).toBe("Inscription gratuite via Agenda CM");
-    expect(COMMON.registerVisitor.en).toBe("Free registration via Agenda CM");
-    const ag = PARTNER_LIST.find((p) => p.name.fr === "Agenda CM")!;
+    expect(COMMON.registerVisitor.fr).toBe("S'inscrire gratuitement");
+    expect(COMMON.registerVisitor.en).toBe("Register for free");
+    const ag = PARTNER_LIST.find((p) => p.logo === null)!;
+    expect(ag.name.fr).toBe("Agenda\u00a0CM");
     expect(ag.description?.fr).toBe(
-      "Partenaire digital : inscriptions des visiteurs et diffusion du FIAME auprès des professionnels au Cameroun",
+      frTypo(
+        "Partenaire digital : inscriptions des visiteurs et diffusion du FIAME auprès des professionnels au Cameroun",
+      ),
     );
     expect(ag.description?.en).toBe(
       "Digital partner: visitor registration and promotion of FIAME to professionals in Cameroon",

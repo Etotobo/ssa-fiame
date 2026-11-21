@@ -18,8 +18,8 @@ export const SSA = {
     orange: "#e8731e", // poster orange: small accents only
   },
   // Numbers and addresses confirmed by SSA on 20/10 (texts v1.2).
-  phone: { display: "+237 657 099 795", tel: "+237657099795" },
-  whatsapp: { display: "+237 621 034 348", wa: "237621034348" },
+  phone: { display: "+237\u00a0657\u00a0099\u00a0795", tel: "+237657099795" },
+  whatsapp: { display: "+237\u00a0621\u00a0034\u00a0348", wa: "237621034348" },
   emails: ["sanitationsafetyinfos@gmail.com", "lafame2024@gmail.com"],
   fairEmail: "lafame2024@gmail.com",
   instagram: { handle: "@fiame_ssa", url: "https://www.instagram.com/fiame_ssa/" },

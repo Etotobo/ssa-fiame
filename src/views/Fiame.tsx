@@ -3,6 +3,7 @@ import { AgendaCmMark, ButtonLink, PageHero, Section, ToComplete } from "@/compo
 import { COMMON, EXHIBIT, FIAME, REMINDER } from "@/site/content";
 import { pagePath } from "@/site/pages";
 import { registerLink, SSA, type Lang } from "@/site/ssa";
+import { typo } from "@/site/typo";
 
 function Actions({ lang, onDark = false }: { lang: Lang; onDark?: boolean }) {
   return (
@@ -28,7 +29,11 @@ export function Fiame({ lang }: { lang: Lang }) {
   ];
   return (
     <>
-      <PageHero title={FIAME.title[lang]} intro={FIAME.theme[lang]} />
+      <PageHero
+        title={FIAME.title[lang]}
+        subtitle={FIAME.subtitle[lang]}
+        intro={FIAME.theme[lang]}
+      />
 
       {/* Key facts and the poster */}
       <Section>
@@ -147,7 +152,9 @@ export function Fiame({ lang }: { lang: Lang }) {
                     </span>
                   </span>
                 </span>
-                <span className="block p-4 text-[15px] font-semibold leading-snug">{v.title}</span>
+                <span className="block p-4 text-[15px] font-semibold leading-snug">
+                  {typo("fr", v.title)}
+                </span>
               </a>
             </li>
           ))}

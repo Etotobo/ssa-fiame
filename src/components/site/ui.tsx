@@ -13,7 +13,7 @@ const LOOK: Record<Look, string> = {
   light: "border-2 border-white/80 text-white hover:bg-white/10",
 };
 const BTN =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-base font-semibold leading-tight transition-colors";
+  "inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-3 text-center text-base font-semibold leading-tight transition-colors";
 
 /** A link that looks like a button: an internal path (to) or an outside URL (href). */
 export function ButtonLink({
@@ -141,13 +141,27 @@ export function Steps({ items }: { items: string[] }) {
 }
 
 /** The page title band at the top of every page but the home. */
-export function PageHero({ title, intro }: { title: ReactNode; intro?: ReactNode }) {
+export function PageHero({
+  title,
+  subtitle,
+  intro,
+}: {
+  title: ReactNode;
+  /** a smaller second line under the title (FIAME 2027's full name) */
+  subtitle?: ReactNode;
+  intro?: ReactNode;
+}) {
   return (
     <header className="bg-brand-deep px-4 py-10 text-center text-white sm:py-14">
       <div className="mx-auto max-w-4xl">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
           {title}
         </h1>
+        {subtitle && (
+          <p className="mx-auto mt-2 max-w-2xl text-xl font-bold leading-snug sm:text-2xl">
+            {subtitle}
+          </p>
+        )}
         {intro && <p className="mx-auto mt-3 max-w-2xl text-lg text-white/85">{intro}</p>}
       </div>
       <div aria-hidden className="mx-auto mt-6 h-1 w-24 rounded-full bg-yellow" />

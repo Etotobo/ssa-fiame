@@ -82,7 +82,7 @@ export function Stands({ lang }: { lang: Lang }) {
             >
               <div>
                 <p className="font-bold text-brand-deep">
-                  {EXHIBIT.colStand[lang]} Type {s.type} · {s.size} m²
+                  {`${EXHIBIT.colStand[lang]} Type\u00a0${s.type} · ${s.size}\u00a0m²`}
                 </p>
                 <p className="text-sm text-muted">{s.included[lang]}</p>
               </div>
@@ -108,7 +108,7 @@ export function Stands({ lang }: { lang: Lang }) {
             {STANDS.map((s, i) => (
               <tr key={s.type} className={i % 2 ? "bg-brand-soft" : "bg-white"}>
                 <td className="px-5 py-3 font-bold text-brand-deep">Type {s.type}</td>
-                <td className="px-5 py-3">{s.size} m²</td>
+                <td className="px-5 py-3">{`${s.size}\u00a0m²`}</td>
                 <td className="px-5 py-3">{s.included[lang]}</td>
                 <td className="px-5 py-3 font-bold">{fcfa(s.price, lang)}</td>
               </tr>

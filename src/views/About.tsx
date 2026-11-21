@@ -69,7 +69,7 @@ export function About({ lang }: { lang: Lang }) {
                     : "flex h-12 w-[4.75rem] items-center justify-center whitespace-nowrap rounded-lg text-[15px] bg-line/60 font-semibold text-muted"
                 }
               >
-                {ABOUT.sdgShort[lang]} {n}
+                {`${ABOUT.sdgShort[lang]}\u00a0${n}`}
               </li>
             );
           })}
