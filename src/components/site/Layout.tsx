@@ -3,7 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { COMMON } from "@/site/content";
 import { NAV_LABEL, NAV_ORDER, pagePath, type PageKey } from "@/site/pages";
-import { SSA, type Lang } from "@/site/ssa";
+import { registerLink, SSA, type Lang } from "@/site/ssa";
 import { cx } from "./ui";
 
 function Logo({ lang, light = false }: { lang: Lang; light?: boolean }) {
@@ -209,6 +209,17 @@ export function Layout({
         </div>
         <p className="mx-auto mt-10 max-w-6xl border-t border-white/15 pt-6 text-center text-sm text-white/65">
           © 2026 {SSA.name}. {COMMON.footerRights[lang]}
+        </p>
+        {/* discreet (founder 21/11) */}
+        <p className="mx-auto mt-2 max-w-6xl text-center text-xs text-white/55">
+          <a
+            href={registerLink("pied")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow"
+          >
+            {COMMON.footerRegistration[lang]}
+          </a>
         </p>
       </footer>
     </div>

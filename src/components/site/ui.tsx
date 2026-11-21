@@ -155,4 +155,37 @@ export function PageHero({ title, intro }: { title: ReactNode; intro?: ReactNode
   );
 }
 
+/** Agenda CM's mark: public/favicon.svg of the agenda-cm repository, copied as is. */
+export function AgendaCmMark({ className }: { className?: string }) {
+  return (
+    <img
+      src="/sites/ssa/agenda-cm-logo.svg"
+      alt=""
+      width={64}
+      height={64}
+      className={cx("shrink-0", className)}
+    />
+  );
+}
+
+/**
+ * Agenda CM's logo as agenda.cm shows it (mark, then « agenda » in near-black
+ * and « .cm » in its red #DC2626, bold system font), stacked to fill a
+ * square logo box.
+ */
+export function AgendaCmLogo() {
+  return (
+    <span className="flex flex-col items-center gap-1.5" role="img" aria-label="Agenda CM">
+      <AgendaCmMark className="h-[60px] w-[60px]" />
+      <span
+        aria-hidden
+        className="font-sans text-[22px] font-bold leading-none tracking-tight text-[#171717]"
+        style={{ fontFamily: "system-ui, sans-serif" }}
+      >
+        agenda<span className="text-[#dc2626]">.cm</span>
+      </span>
+    </span>
+  );
+}
+
 export { cx };

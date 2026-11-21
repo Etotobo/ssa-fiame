@@ -12,7 +12,9 @@ export const COMMON = {
   toComplete: t("À compléter", "To be completed"),
   bookStand: t("Réserver mon stand", "Book my stand"),
   becomePartner: t("Devenir partenaire", "Become a partner"),
-  registerVisitor: t("M'inscrire comme visiteur", "Register as a visitor"),
+  // Agenda CM integration (founder 21/11)
+  registerVisitor: t("Inscription gratuite via Agenda CM", "Free registration via Agenda CM"),
+  footerRegistration: t("Inscriptions : Agenda CM", "Registration: Agenda CM"),
   buyMagazine: t("Acheter le magazine", "Buy the magazine"),
   buyOnWhatsapp: t("Acheter sur WhatsApp", "Buy on WhatsApp"),
   menu: t("Menu", "Menu"),
@@ -298,6 +300,17 @@ export const FIAME = {
   openInMaps: t("Ouvrir dans Maps", "Open in Maps"),
 };
 
+// « Recevez un rappel avant la foire » (founder 21/11): the FIAME page on
+// Agenda CM, where visitors register and get reminded
+export const REMINDER = {
+  title: t("Recevez un rappel avant la foire", "Get a reminder before the fair"),
+  body: t(
+    "Inscrivez-vous gratuitement à la FIAME 2027 sur Agenda CM : vous serez prévenu(e) avant l'ouverture.",
+    "Register for FIAME 2027 for free on Agenda CM and you will be reminded before it opens.",
+  ),
+  button: t("Être prévenu(e) sur Agenda CM", "Get reminded on Agenda CM"),
+};
+
 // ---------------------------------------------------------------- 4. exhibitors
 export type Stand = { type: number; size: number; price: number; included: T };
 // v1: stand types, sizes and prices set here; the table, the list and the
@@ -374,7 +387,7 @@ export const EXHIBIT = {
     "L'entrée est gratuite. Inscrivez-vous avec votre nom et votre e-mail ou votre numéro WhatsApp.",
     "Admission is free. Register with your name and your email or WhatsApp number.",
   ),
-  handledBy: t("Inscription gérée par agenda.cm", "Registration handled by agenda.cm"),
+  handledBy: t("Agenda CM, partenaire digital du FIAME", "Agenda CM, digital partner of FIAME"),
 };
 
 /** « Type 3 – 9 m² – 35 000 FCFA » (FR) / « Type 3 – 9 m² – 35,000 FCFA » (EN). */
@@ -565,7 +578,7 @@ export function partnerMessage(pack: string, lang: Lang): string {
     : `Hello, I would like to become a FIAME 2027 partner. Package I am interested in: ${pack}. My company or organisation: `;
 }
 
-export const PARTNER_LIST: { name: T; logo: string | null }[] = [
+export const PARTNER_LIST: { name: T; logo: string | null; description?: T }[] = [
   {
     name: t("Délégation régionale du MINEPDED", "Regional Delegation of MINEPDED"),
     logo: "minepded",
@@ -588,7 +601,14 @@ export const PARTNER_LIST: { name: T; logo: string | null }[] = [
     ),
     logo: "cij-douala",
   },
-  { name: t("agenda.cm", "agenda.cm"), logo: null },
+  {
+    name: t("Agenda CM", "Agenda CM"),
+    logo: null,
+    description: t(
+      "Partenaire digital : inscriptions des visiteurs et diffusion du FIAME auprès des professionnels au Cameroun",
+      "Digital partner: visitor registration and promotion of FIAME to professionals in Cameroon",
+    ),
+  },
 ];
 
 // ---------------------------------------------------------------- 7. contact

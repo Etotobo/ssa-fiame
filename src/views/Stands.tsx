@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
 import { Button, ButtonLink, PageHero, Section, Steps } from "@/components/site/ui";
+import { AgendaCmMark } from "@/components/site/ui";
 import { COMMON, EXHIBIT, fcfa, SECTORS, standMessage, standOption, STANDS } from "@/site/content";
 import { registerLink, SSA, waLink, type Lang } from "@/site/ssa";
 
@@ -126,7 +127,7 @@ export function Stands({ lang }: { lang: Lang }) {
       <Section title={EXHIBIT.visitTitle[lang]} intro={EXHIBIT.visit[lang]}>
         <div className="flex flex-col items-center gap-3">
           <ButtonLink href={registerLink("exposants")} look="outline">
-            {COMMON.registerVisitor[lang]}
+            <AgendaCmMark className="h-5 w-5" /> {COMMON.registerVisitor[lang]}
           </ButtonLink>
           <p className="text-sm text-muted">{EXHIBIT.handledBy[lang]}</p>
         </div>

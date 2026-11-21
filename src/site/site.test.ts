@@ -1,6 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { langOf, pageAt, pagePath, NAV_ORDER } from "./pages";
-import { fcfa, partnerMessage, standMessage, STANDS, SECTORS } from "./content";
+import {
+  COMMON,
+  EXHIBIT,
+  fcfa,
+  PARTNER_LIST,
+  partnerMessage,
+  REMINDER,
+  standMessage,
+  STANDS,
+  SECTORS,
+} from "./content";
 import { registerLink, waLink, SSA } from "./ssa";
 
 describe("SSA site settings", () => {
@@ -40,14 +50,45 @@ describe("SSA site settings", () => {
     );
     expect(SSA.catalogue).toBe("https://wa.me/c/102736238506012");
     expect(registerLink("fiame")).toMatch(/^https:\/\/agenda\.cm\/events\/fiame-2027-/);
-    expect(registerLink("fiame")).toMatch(
-      /utm_source=ssa-fiame\.cm&utm_medium=site&utm_content=fiame$/,
-    );
+    // every Agenda CM link: the FIAME page only, with the campaign (21/11)
+    for (const place of ["fiame", "exposants", "rappel", "pied"] as const) {
+      const u = new URL(registerLink(place));
+      expect(`${u.origin}${u.pathname}`).toBe(SSA.fiameEvent);
+      expect(Object.fromEntries(u.searchParams)).toEqual({
+        utm_source: "ssa-fiame",
+        utm_medium: "site",
+        utm_campaign: "fiame2027",
+        utm_content: place,
+      });
+    }
     expect(SSA.mapsUrl).toBeNull();
     // SSA's LinkedIn link of 21/11, no tracking parameter
     expect(SSA.linkedinUrl).toBe(
       "https://www.linkedin.com/in/foire-internationale-aux-m%C3%A9tiers-de-l-environnemen-fiame-1a4567416/",
     );
     expect(decodeURI(SSA.linkedinUrl)).toContain("aux-métiers-de-l-environnemen");
+  });
+
+  it("Agenda CM in the texts (21/11), never « agenda.cm »; its partner line", () => {
+    const texts = [
+      COMMON.registerVisitor,
+      COMMON.footerRegistration,
+      EXHIBIT.handledBy,
+      REMINDER.title,
+      REMINDER.body,
+      REMINDER.button,
+    ];
+    for (const t of texts) {
+      for (const l of ["fr", "en"] as const) expect(t[l]).not.toMatch(/agenda\.cm/i);
+    }
+    expect(COMMON.registerVisitor.fr).toBe("Inscription gratuite via Agenda CM");
+    expect(COMMON.registerVisitor.en).toBe("Free registration via Agenda CM");
+    const ag = PARTNER_LIST.find((p) => p.name.fr === "Agenda CM")!;
+    expect(ag.description?.fr).toBe(
+      "Partenaire digital : inscriptions des visiteurs et diffusion du FIAME auprès des professionnels au Cameroun",
+    );
+    expect(ag.description?.en).toBe(
+      "Digital partner: visitor registration and promotion of FIAME to professionals in Cameroon",
+    );
   });
 });

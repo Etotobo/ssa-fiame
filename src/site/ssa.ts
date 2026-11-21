@@ -65,7 +65,12 @@ export function mailLink(address: string, subject: string): string {
   return `mailto:${address}?subject=${encodeURIComponent(subject)}`;
 }
 
-/** The visitor registration link on agenda.cm, tagged as coming from this site. */
-export function registerLink(place: string): string {
-  return `${SSA.fiameEvent}?utm_source=${SSA.domain}&utm_medium=site&utm_content=${place}`;
+/**
+ * Every link to Agenda CM goes to the FIAME 2027 page only (never another
+ * event, founder 21/11), tagged utm_source=ssa-fiame, utm_medium=site,
+ * utm_campaign=fiame2027 and one utm_content per place.
+ */
+export type AgendaCmPlace = "fiame" | "exposants" | "rappel" | "pied";
+export function registerLink(place: AgendaCmPlace): string {
+  return `${SSA.fiameEvent}?utm_source=ssa-fiame&utm_medium=site&utm_campaign=fiame2027&utm_content=${place}`;
 }

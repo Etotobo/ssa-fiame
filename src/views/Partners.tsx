@@ -1,5 +1,5 @@
 import { Mail, MessageCircle } from "lucide-react";
-import { ButtonLink, PageHero, Section, Steps, cx } from "@/components/site/ui";
+import { AgendaCmLogo, ButtonLink, PageHero, Section, Steps, cx } from "@/components/site/ui";
 import {
   PACK_NAME,
   PACK_ORDER,
@@ -87,10 +87,13 @@ export function Partners({ lang }: { lang: Lang }) {
                     className="max-h-24 max-w-full object-contain"
                   />
                 ) : (
-                  <span className="text-2xl font-extrabold text-[#dc2626]">agenda.cm</span>
+                  <AgendaCmLogo />
                 )}
               </div>
               <p className="mt-3 text-sm font-semibold leading-snug">{p.name[lang]}</p>
+              {p.description && (
+                <p className="mt-1 text-xs leading-snug text-muted">{p.description[lang]}</p>
+              )}
             </li>
           ))}
         </ul>

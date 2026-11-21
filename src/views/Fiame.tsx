@@ -1,17 +1,17 @@
 import { CalendarDays, MapPin, Play, Ticket } from "lucide-react";
-import { ButtonLink, PageHero, Section, ToComplete } from "@/components/site/ui";
-import { COMMON, EXHIBIT, FIAME } from "@/site/content";
+import { AgendaCmMark, ButtonLink, PageHero, Section, ToComplete } from "@/components/site/ui";
+import { COMMON, EXHIBIT, FIAME, REMINDER } from "@/site/content";
 import { pagePath } from "@/site/pages";
 import { registerLink, SSA, type Lang } from "@/site/ssa";
 
-function Actions({ lang, place, onDark = false }: { lang: Lang; place: string; onDark?: boolean }) {
+function Actions({ lang, onDark = false }: { lang: Lang; onDark?: boolean }) {
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
       <ButtonLink to={pagePath("stands", lang)} look={onDark ? "yellow" : "primary"}>
         {COMMON.bookStand[lang]}
       </ButtonLink>
-      <ButtonLink href={registerLink(place)} look={onDark ? "light" : "outline"}>
-        {COMMON.registerVisitor[lang]}
+      <ButtonLink href={registerLink("fiame")} look={onDark ? "light" : "outline"}>
+        <AgendaCmMark className="h-5 w-5" /> {COMMON.registerVisitor[lang]}
       </ButtonLink>
       <ButtonLink to={pagePath("partners", lang)} look={onDark ? "light" : "outline"}>
         {COMMON.becomePartner[lang]}
@@ -110,6 +110,18 @@ export function Fiame({ lang }: { lang: Lang }) {
       </Section>
 
       {/* SSA's videos: a still and a link to YouTube, no player (weight) */}
+      {/* « Recevez un rappel avant la foire » (founder 21/11): the FIAME
+          page on Agenda CM */}
+      <Section title={REMINDER.title[lang]} intro={REMINDER.body[lang]}>
+        <div className="flex flex-col items-center gap-3">
+          <ButtonLink href={registerLink("rappel")}>
+            <AgendaCmMark className="h-5 w-5 rounded-[5px] ring-1 ring-white/70" />{" "}
+            {REMINDER.button[lang]}
+          </ButtonLink>
+          <p className="text-sm text-muted">{EXHIBIT.handledBy[lang]}</p>
+        </div>
+      </Section>
+
       <Section tone="soft" title={lang === "fr" ? "En vidéo" : "On video"}>
         <ul className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-2">
           {SSA.videos.map((v) => (
@@ -146,7 +158,7 @@ export function Fiame({ lang }: { lang: Lang }) {
       </Section>
 
       <Section title={FIAME.previousTitle[lang]} intro={FIAME.previous[lang]}>
-        <Actions lang={lang} place="fiame" />
+        <Actions lang={lang} />
         <p className="mt-6 text-center text-sm text-muted">{EXHIBIT.handledBy[lang]}</p>
       </Section>
     </>
