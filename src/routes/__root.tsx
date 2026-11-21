@@ -13,6 +13,7 @@ import { useEffect, type CSSProperties, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { ERROR_TEXT, errorLang } from "../lib/error-page";
 import { Layout } from "@/components/site/Layout";
 import { ButtonLink } from "@/components/site/ui";
 import { COMMON } from "@/site/content";
@@ -47,34 +48,33 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
+  const pathname = useRouterState({ select: (st) => st.location.pathname });
+  // French, English under /en (founder 21/11); same texts as the server page
+  const t = ERROR_TEXT[errorLang(pathname)];
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
+    <div className="flex min-h-screen items-center justify-center bg-brand-soft px-4">
+      <div className="max-w-md rounded-2xl bg-white p-8 text-center">
+        <h1 className="text-xl font-extrabold text-brand-deep">{t.title}</h1>
+        <p className="mt-2 text-muted">{t.body}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-brand px-5 py-2 font-semibold text-white hover:bg-brand-deep"
           >
-            Try again
+            {t.retry}
           </button>
           <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            href={t.homeHref}
+            className="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-brand bg-white px-5 py-2 font-semibold text-brand hover:bg-brand-soft"
           >
-            Go home
+            {t.home}
           </a>
         </div>
       </div>
