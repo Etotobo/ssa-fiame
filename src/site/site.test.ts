@@ -44,5 +44,10 @@ describe("SSA site settings", () => {
       /utm_source=ssa-fiame\.cm&utm_medium=site&utm_content=fiame$/,
     );
     expect(SSA.mapsUrl).toBeNull();
+    // SSA's LinkedIn link of 21/11, no tracking parameter
+    expect(SSA.linkedinUrl).toBe(
+      "https://www.linkedin.com/in/foire-internationale-aux-m%C3%A9tiers-de-l-environnemen-fiame-1a4567416/",
+    );
+    expect(decodeURI(SSA.linkedinUrl)).toContain("aux-métiers-de-l-environnemen");
   });
 });

@@ -32,8 +32,10 @@ export const SSA = {
   // Founder 21/11. Facebook: the questionnaire's share link
   // (facebook.com/share/1CBFxSPYdT) leads to this page, linked directly.
   facebookUrl: "https://www.facebook.com/sanitationsafety",
+  // SSA's link of 21/11 (« métiers » with é, written encoded), replacing
+  // the questionnaire's one of 19/10 (« metiers »)
   linkedinUrl:
-    "https://www.linkedin.com/in/foire-internationale-aux-metiers-de-l-environnemen-fiame-1a4567416",
+    "https://www.linkedin.com/in/foire-internationale-aux-m%C3%A9tiers-de-l-environnemen-fiame-1a4567416/",
   // The venue on a map: null = no « Ouvrir dans Maps » at all, only the
   // address in text (founder 21/11). When SSA sends its location, put the
   // link here and the button comes back on FIAME 2027 and Contact.
