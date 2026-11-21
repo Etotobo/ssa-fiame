@@ -1,23 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Layout } from "@/components/site/Layout";
+import { Home } from "@/views/Home";
+import { pageHead } from "@/site/head";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "ssa-fiame — Site en préparation" },
-      { name: "description", content: "Le site ssa-fiame est en préparation." },
-      { property: "og:title", content: "ssa-fiame — Site en préparation" },
-      { property: "og:description", content: "Le site ssa-fiame est en préparation." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-  }),
-  component: Index,
+  head: () => pageHead("home", "fr"),
+  component: () => (
+    <Layout lang="fr" page="home">
+      <Home lang="fr" />
+    </Layout>
+  ),
 });
-
-function Index() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <p className="text-2xl text-foreground">Site en préparation</p>
-    </div>
-  );
-}

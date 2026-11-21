@@ -14,4 +14,22 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+
+  it("matches the 7 pages in French and English", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    for (const path of [
+      "/a-propos",
+      "/fiame-2027",
+      "/exposants",
+      "/magazine",
+      "/partenaires",
+      "/contact",
+      "/en",
+      "/en/about",
+      "/en/exhibitors",
+      "/en/partners",
+    ]) {
+      expect(router.matchRoutes(path).at(-1)?.routeId, path).not.toBe(rootRouteId);
+    }
+  });
 });

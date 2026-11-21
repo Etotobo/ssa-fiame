@@ -4,34 +4,43 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, type CSSProperties, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Layout } from "@/components/site/Layout";
+import { ButtonLink } from "@/components/site/ui";
+import { COMMON } from "@/site/content";
+import { langOf, pagePath } from "@/site/pages";
+import { SSA } from "@/site/ssa";
+
+// The site's colours as CSS variables (src/site/ssa.ts).
+const themeVars = {
+  "--brand": SSA.colors.brand,
+  "--brand-deep": SSA.colors.brandDeep,
+  "--brand-soft": SSA.colors.brandSoft,
+  "--yellow": SSA.colors.yellow,
+  "--orange": SSA.colors.orange,
+} as CSSProperties;
 
 function NotFoundComponent() {
+  const pathname = useRouterState({ select: (st) => st.location.pathname });
+  const lang = langOf(pathname);
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
+    <Layout lang={lang} page={null}>
+      <div className="px-4 py-24 text-center">
+        <h1 className="text-3xl font-extrabold text-brand-deep">{COMMON.notFoundTitle[lang]}</h1>
+        <p className="mt-3 text-muted">{COMMON.notFoundBody[lang]}</p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
+          <ButtonLink to={pagePath("home", lang)}>{COMMON.backHome[lang]}</ButtonLink>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
@@ -75,27 +84,20 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-    // Replace these placeholders with the app's name and description when first building the app.
-    // Each content route, / included, must still set its own head(). Never add og:image or
-    // twitter:image here: every page without its own would inherit the root's preview image.
+    // Each page sets its own title, description, og:* and hreflang (src/site/head.ts).
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ssa-fiame" },
-      { name: "description", content: "Site en préparation" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "ssa-fiame" },
-      { property: "og:description", content: "Site en préparation" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "theme-color", content: SSA.colors.brandDeep },
+      // Preview: nothing is indexed until the site goes live (founder 21/11).
+      { name: "robots", content: "noindex, nofollow" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/sites/ssa/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
@@ -105,8 +107,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (st) => st.location.pathname });
   return (
-    <html lang="en">
+    <html lang={langOf(pathname)} style={themeVars}>
       <head>
         <HeadContent />
       </head>
