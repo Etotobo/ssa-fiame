@@ -169,21 +169,13 @@ export function AgendaCmMark({ className }: { className?: string }) {
 }
 
 /**
- * Agenda CM's logo as agenda.cm shows it (mark, then « agenda » in near-black
- * and « .cm » in its red #DC2626, bold system font), stacked to fill a
- * square logo box.
+ * Agenda CM's logo in a partner card (founder 21/11): the mark alone, at the
+ * other logos' visual height; the card's title says « Agenda CM ».
  */
 export function AgendaCmLogo() {
   return (
-    <span className="flex flex-col items-center gap-1.5" role="img" aria-label="Agenda CM">
-      <AgendaCmMark className="h-[60px] w-[60px]" />
-      <span
-        aria-hidden
-        className="font-sans text-[22px] font-bold leading-none tracking-tight text-[#171717]"
-        style={{ fontFamily: "system-ui, sans-serif" }}
-      >
-        agenda<span className="text-[#dc2626]">.cm</span>
-      </span>
+    <span role="img" aria-label="Agenda CM" className="flex items-center justify-center">
+      <AgendaCmMark className="h-20 w-20" />
     </span>
   );
 }

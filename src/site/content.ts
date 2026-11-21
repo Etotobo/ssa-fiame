@@ -301,12 +301,13 @@ export const FIAME = {
 };
 
 // « Recevez un rappel avant la foire » (founder 21/11): the FIAME page on
-// Agenda CM, where visitors register and get reminded
+// Agenda CM. Agenda CM sends a WhatsApp reminder the day before (17:30
+// Douala) to registrants who tick its reminder box -- nothing more is promised.
 export const REMINDER = {
   title: t("Recevez un rappel avant la foire", "Get a reminder before the fair"),
   body: t(
-    "Inscrivez-vous gratuitement à la FIAME 2027 sur Agenda CM : vous serez prévenu(e) avant l'ouverture.",
-    "Register for FIAME 2027 for free on Agenda CM and you will be reminded before it opens.",
+    "Inscrivez-vous gratuitement à la FIAME 2027 sur Agenda CM : vous pourrez recevoir un rappel sur WhatsApp la veille de l'ouverture.",
+    "Register for FIAME 2027 for free on Agenda CM and you can get a WhatsApp reminder the day before it opens.",
   ),
   button: t("Être prévenu(e) sur Agenda CM", "Get reminded on Agenda CM"),
 };
