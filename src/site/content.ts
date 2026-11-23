@@ -47,9 +47,11 @@ export const HOME = {
     "Depuis 2022, Sanitation Safety Association (SSA) agit pour l'éducation environnementale, la protection de la nature et le développement durable au Cameroun.",
     "Since 2022, Sanitation Safety Association (SSA) has been working for environmental education, nature protection and sustainable development in Cameroon.",
   ),
+  // SSA 21/11: « 4ᵉ édition de la Foire Internationale aux Métiers de
+  // l'Environnement »
   fiameTitle: t(
-    "FIAME 2027, 4ᵉ Foire Internationale aux Métiers de l'Environnement",
-    "FIAME 2027, 4th International Fair of Environmental Professions",
+    "FIAME 2027, 4ᵉ édition de la Foire Internationale aux Métiers de l'Environnement",
+    "FIAME 2027, 4th edition of the International Fair of Environmental Professions",
   ),
   fiameBody: t(
     "Du 1er au 5 juin 2027 à Douala. Valorisons les métiers verts, stimulons l'innovation et l'entrepreneuriat environnemental, et bâtissons ensemble un avenir durable.",
@@ -192,8 +194,8 @@ export const FIAME = {
   // « FIAME 2027 » as the title, the fair's full name below it (founder 21/11)
   title: t("FIAME 2027", "FIAME 2027"),
   subtitle: t(
-    "4ᵉ Foire Internationale aux Métiers de l'Environnement",
-    "4th International Fair of Environmental Professions",
+    "4ᵉ édition de la Foire Internationale aux Métiers de l'Environnement",
+    "4th edition of the International Fair of Environmental Professions",
   ),
   themeLabel: t("Thème", "Theme"),
   theme: t(
@@ -203,11 +205,11 @@ export const FIAME = {
   datesLabel: t("Dates", "Dates"),
   dates: t("du 1er au 5 juin 2027, de 8 h à 18 h", "1 to 5 June 2027, 8 am to 6 pm"),
   venueLabel: t("Lieu", "Venue"),
-  // founder 21/11 (poster 28/10); the centre's exact name: Centre
-  // d'insertion des jeunes en difficulté de Douala (CIJ)
+  // SSA's wording of 21/11 (the centre: Centre d'insertion des jeunes en
+  // difficulté de Douala, CIJ)
   venue: t(
-    "Esplanade du Complexe sportif du CIJ, Douala 3ᵉ — derrière la mairie de Logbaba, à côté de la Mairie de Douala 3ᵉ",
-    "Esplanade of the CIJ sports complex, Douala 3rd district — behind Logbaba town hall, next to Douala 3rd District Council",
+    "Esplanade du complexe sportif du CIJ Douala, derrière la mairie de Douala 3ᵉ",
+    "Esplanade of the CIJ Douala sports complex, behind Douala 3rd District Council",
   ),
   free: t("Entrée gratuite", "Free admission"),
   whyTitle: t("Pourquoi la FIAME ?", "Why FIAME?"),
@@ -221,49 +223,110 @@ export const FIAME = {
     "to promote an inclusive green economy through innovation, entrepreneurship and partnerships, creating sustainable jobs.",
   ),
   programmeTitle: t("Au programme", "What's on"),
-  programme: [
+  // SSA's « Programme global » poster of 21/11, its three strands with their
+  // points; the details of the former six blocks (texts v1.2) are kept on
+  // the matching points, nothing repeated.
+  strands: [
     {
-      title: t("Foire-exposition", "Exhibition"),
-      body: t(
-        "entreprises, ONG, associations et artisans présentent leurs produits et services.",
-        "companies, NGOs, associations and artisans present their products and services.",
+      key: "environnement" as const,
+      title: t("FIAME Environnement", "FIAME Environment"),
+      tagline: t(
+        "Innovation verte et économie durable",
+        "Green innovation and sustainable economy",
       ),
+      points: [
+        t(
+          "Expositions commerciales, industrielles et technologiques : entreprises, ONG, associations et artisans",
+          "Trade, industrial and technology exhibitions: companies, NGOs, associations and artisans",
+        ),
+        t(
+          "Conférences et panels : économie circulaire, finance verte, transition énergétique, emplois durables, santé et sécurité au travail",
+          "Conferences and panels: circular economy, green finance, energy transition, sustainable jobs, occupational health and safety",
+        ),
+        t("Rencontres d'affaires B2B, B2C et C2C", "B2B, B2C and C2C business meetings"),
+        t(
+          "Formations, démonstrations et ateliers pratiques : pavés à base de déchets plastiques, charbon écologique, produits cosmétiques, sécurité incendie et premiers secours",
+          "Training, demonstrations and hands-on workshops: paving stones made from plastic waste, eco-charcoal, cosmetics, fire safety and first aid",
+        ),
+        t(
+          "Ateliers professionnels : montage de projets, recherche de financements (y compris internationaux), gestion des conflits en entreprise, développement personnel",
+          "Professional workshops: project design, fundraising (including international funding), conflict management at work, personal development",
+        ),
+        t(
+          "Rencontres avec investisseurs et porteurs de projets verts",
+          "Meetings with investors and green project leaders",
+        ),
+        t("Marche sportive écologique", "Eco-walk"),
+        t(
+          "Élection de Miss et Master FIAME, ambassadeurs de l'éducation environnementale",
+          "Miss and Master FIAME contest, ambassadors for environmental education",
+        ),
+        t(
+          "Campagnes de sensibilisation à la protection de l'environnement",
+          "Awareness campaigns on environmental protection",
+        ),
+      ],
     },
     {
-      title: t("Conférences et panels", "Conferences and panels"),
-      body: t(
-        "économie circulaire, finance verte, transition énergétique, emplois durables, santé et sécurité au travail.",
-        "circular economy, green finance, energy transition, sustainable jobs, occupational health and safety.",
+      key: "sante" as const,
+      title: t("FIAME Santé", "FIAME Health"),
+      tagline: t(
+        "Santé et environnement, un même combat",
+        "Health and environment, one and the same fight",
       ),
+      points: [
+        t(
+          "Campagne gratuite de dépistage et de consultation médicale pendant les 5 jours de la foire, avec un personnel médical de référence",
+          "Free screening and medical consultations throughout the 5 days of the fair, by qualified medical staff",
+        ),
+        t("Sensibilisation sur la santé environnementale", "Awareness on environmental health"),
+        t(
+          "Ateliers sur l'hygiène, l'assainissement et la qualité de l'air et de l'eau",
+          "Workshops on hygiene, sanitation, and air and water quality",
+        ),
+        t("Conseils et éducation sanitaire pour tous", "Health advice and education for all"),
+        t(
+          "Partenariat avec les structures sanitaires et les ONG",
+          "Partnership with health facilities and NGOs",
+        ),
+      ],
     },
     {
-      title: t("Ateliers techniques", "Technical workshops"),
-      body: t(
-        "montage de projets, recherche de financements (y compris internationaux), développement personnel.",
-        "project design, fundraising (including international funding), personal development.",
+      key: "projet" as const,
+      title: t("Meilleur projet écologique de la FIAME", "FIAME Best Eco-Project"),
+      tagline: t(
+        "Innover aujourd'hui, pour un avenir durable",
+        "Innovating today for a sustainable future",
       ),
-    },
-    {
-      title: t("Ateliers pratiques", "Hands-on workshops"),
-      body: t(
-        "pavés à base de déchets plastiques, charbon écologique, produits cosmétiques, gestion des conflits en entreprise, sécurité incendie et premiers secours.",
-        "paving stones made from plastic waste, eco-charcoal, cosmetics, conflict management at work, fire safety and first aid.",
-      ),
-    },
-    {
-      title: t("Marche sportive écologique", "Eco-walk"),
-      body: t("pour sensibiliser le grand public.", "to raise public awareness."),
-    },
-    {
-      title: t("Élection Miss et Master FIAME", "Miss and Master FIAME contest"),
-      body: t(
-        "ambassadeurs de l'éducation environnementale.",
-        "ambassadors for environmental education.",
-      ),
+      points: [
+        t(
+          "Concours national des meilleurs projets écologiques",
+          "National contest for the best eco-projects",
+        ),
+        t(
+          "Présentation des innovations et solutions vertes",
+          "Showcase of green innovations and solutions",
+        ),
+        t("Évaluation par un jury d'experts", "Assessment by a panel of experts"),
+        t(
+          "Prix attractifs : reconnaissance, accompagnement et financement",
+          "Attractive prizes: recognition, support and funding",
+        ),
+      ],
     },
   ],
+  highlightsTitle: t("Autres temps forts", "Other highlights"),
+  highlights: [
+    t("Rencontres B2B et B2C", "B2B and B2C meetings"),
+    t("Formations professionnelles", "Professional training"),
+    t("Expositions-ventes", "Exhibitions and sales"),
+    t("Débats et panels", "Debates and panels"),
+    t("Innovations technologiques", "Technological innovations"),
+    t("Animations culturelles", "Cultural entertainment"),
+  ],
   daysTitle: t("Programme jour par jour", "Day-by-day programme"),
-  // « done »: SSA gave the day's programme; otherwise « à compléter » is shown.
+  // The days SSA has given (texts v1.2); the rest is fixed once every
+  // speaker has agreed (SSA 21/11): one line instead of « à compléter ».
   days: [
     {
       day: t("Jour 1, mardi 1er juin", "Day 1, Tuesday 1 June"),
@@ -271,7 +334,6 @@ export const FIAME = {
         "Accueil et installation des stands, cérémonie d'ouverture officielle, coupure du ruban, visite des stands par les officiels et partenaires, causeries éducatives",
         "Welcome and stand set-up, official opening ceremony, ribbon cutting, stand tour by officials and partners, educational talks",
       ),
-      done: true,
     },
     {
       day: t("Jour 2, mercredi 2 juin", "Day 2, Wednesday 2 June"),
@@ -279,24 +341,12 @@ export const FIAME = {
         "Ouverture des stands, conférences-débats, causeries éducatives",
         "Stands open, conferences and debates, educational talks",
       ),
-      done: false,
-    },
-    {
-      day: t("Jour 3, jeudi 3 juin", "Day 3, Thursday 3 June"),
-      body: t("À venir", "Coming soon"),
-      done: false,
-    },
-    {
-      day: t("Jour 4, vendredi 4 juin", "Day 4, Friday 4 June"),
-      body: t("À venir", "Coming soon"),
-      done: false,
-    },
-    {
-      day: t("Jour 5, samedi 5 juin", "Day 5, Saturday 5 June"),
-      body: t("À venir", "Coming soon"),
-      done: false,
     },
   ],
+  daysSoon: t(
+    "Programme détaillé jour par jour bientôt disponible",
+    "Detailed day-by-day programme coming soon",
+  ),
   previousTitle: t("Les éditions précédentes", "Previous editions"),
   previous: t(
     "3 éditions depuis 2024, plus de 100 exposants et plus de 15 partenaires mobilisés, plus de 8 000 personnes sensibilisées depuis 2024.",
@@ -318,13 +368,20 @@ export const REMINDER = {
 };
 
 // ---------------------------------------------------------------- 4. exhibitors
-export type Stand = { type: number; size: number; price: number; included: T };
+export type Stand = {
+  type: number;
+  size: number;
+  price: number;
+  included: T;
+  /** not on the site yet (its figures are missing) */
+  hidden?: boolean;
+};
 // v1: stand types, sizes and prices set here; the table, the list and the
-// WhatsApp message all read this one list. Source: SSA's stand poster of
-// 28/10 (founder 27/10: the most recent reference wins over texts v1.2).
-// There is no Type 3.
+// WhatsApp message all read STANDS, the shown ones. Source: SSA's stand
+// poster of 28/10 (founder 27/10: the most recent reference wins over texts
+// v1.2).
 const TABLE_CHAIR = t("Une table, une chaise", "One table, one chair");
-export const STANDS: Stand[] = [
+export const ALL_STANDS: Stand[] = [
   {
     type: 1,
     size: 9,
@@ -332,10 +389,16 @@ export const STANDS: Stand[] = [
     included: t("Une table, deux chaises", "One table, two chairs"),
   },
   { type: 2, size: 9, price: 50000, included: t("Sans table ni chaise", "No table or chair") },
+  // Type 3: missing from the poster by mistake (SSA 21/11). Its place is
+  // ready; it stays hidden until the founder has its size (m²), price
+  // (FCFA) and what is included: fill them in, remove « hidden ».
+  { type: 3, size: 0, price: 0, included: t("", ""), hidden: true },
   { type: 4, size: 6, price: 50000, included: TABLE_CHAIR },
   { type: 5, size: 4, price: 35000, included: TABLE_CHAIR },
   { type: 6, size: 2, price: 20000, included: TABLE_CHAIR },
 ];
+/** The stands shown on the site (table, list, WhatsApp message). */
+export const STANDS: Stand[] = ALL_STANDS.filter((s) => !s.hidden);
 
 export const SECTORS: T[] = [
   t("Déchets et recyclage", "Waste and recycling"),
@@ -385,8 +448,8 @@ export const EXHIBIT = {
   choose: t("Choisir…", "Choose…"),
   button: t("Réserver sur WhatsApp", "Book on WhatsApp"),
   noWhatsapp: t(
-    "Pas de WhatsApp ? Appelez-nous au +237 657 099 795 ou écrivez à lafame2024@gmail.com.",
-    "No WhatsApp? Call us on +237 657 099 795 or write to lafame2024@gmail.com.",
+    "Pas de WhatsApp ? Appelez-nous au +237 657 099 795 ou au +237 621 034 348, ou écrivez à lafame2024@gmail.com.",
+    "No WhatsApp? Call us on +237 657 099 795 or +237 621 034 348, or write to lafame2024@gmail.com.",
   ),
   visitTitle: t("Visitez la FIAME 2027", "Visit FIAME 2027"),
   visit: t(
@@ -434,6 +497,50 @@ export const MAGAZINE = {
   ],
   coverAlt: t("Couverture du FIAME Magazine n° 1", "Cover of FIAME Magazine No. 1"),
   extractsTitle: t("Extraits", "Extracts"),
+  extractsIntro: t("Touchez une page pour l'agrandir.", "Tap a page to enlarge it."),
+  page: t("Page", "Page"),
+  // SSA's pages of 21/11, in the magazine's order; images
+  // public/sites/ssa/magazine-n01-p<NN>(-mini).webp
+  extracts: [
+    { page: 6, caption: t("Présentation de la FIAME", "Introducing FIAME") },
+    {
+      page: 7,
+      caption: t("Dossier spécial : le réchauffement climatique", "Special report: global warming"),
+    },
+    { page: 33, caption: t("Salubrité à domicile", "Keeping homes clean") },
+    {
+      page: 37,
+      caption: t("FIAME Business : l'économie circulaire", "FIAME Business: the circular economy"),
+    },
+  ],
+};
+
+// « À paraître » (founder 23/11): the book of SSA's president, on the
+// Magazine page, HIDDEN until SSA agrees (SSA.showBook in ssa.ts).
+export const BOOK = {
+  label: t("À paraître", "Coming soon"),
+  title: t(
+    "QHSE : le choc du terrain – Guide de survie pour jeunes diplômés en Afrique",
+    "QHSE\u00a0: le choc du terrain – Guide de survie pour jeunes diplômés en Afrique",
+  ),
+  // the book is in French: said in English
+  inFrench: t("", "Book in French: a survival guide for young graduates in Africa."),
+  author: t("M. Ngono Mbida Jules Joël", "Mr Ngono Mbida Jules Joël"),
+  publisher: t("Les éditions NJJ", "Les éditions NJJ"),
+  prices: [
+    { label: t("Numérique", "Digital"), price: t("5 000 FCFA", "5,000 FCFA") },
+    { label: t("Papier", "Print"), price: t("7 500 FCFA", "7,500 FCFA") },
+  ],
+  release: t("Sortie prévue mi-décembre 2026", "Expected mid-December 2026"),
+  button: t("Être prévenu sur WhatsApp", "Get notified on WhatsApp"),
+  message: t(
+    "Bonjour, je souhaite être prévenu(e) de la sortie du livre « QHSE : le choc du terrain ».",
+    'Hello, I would like to be notified when the book "QHSE : le choc du terrain" is released.',
+  ),
+  coverAlt: t(
+    "Couverture du livre « QHSE : le choc du terrain »",
+    'Cover of the book "QHSE : le choc du terrain"',
+  ),
 };
 
 // ---------------------------------------------------------------- 6. partners
@@ -459,8 +566,9 @@ export const PACK_ROWS: { label: T; values: Record<Pack, T> }[] = [
   {
     label: t("Logo", "Logo"),
     values: {
-      platine: t("1re position sur tous les supports", "1st position on all materials"),
-      or: t("2e position sur tous les supports", "2nd position on all materials"),
+      // SSA 21/11: no « 1re »; « Deuxième » to match « Première »
+      platine: t("Première position sur tous les supports", "Top position on all materials"),
+      or: t("Deuxième position sur tous les supports", "Second position on all materials"),
       argent: t("Sur les supports de communication", "On communication materials"),
       bronze: t("Sur les supports numériques", "On digital materials"),
     },

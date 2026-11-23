@@ -40,8 +40,8 @@ export function Home({ lang }: { lang: Lang }) {
             <img
               src="/sites/ssa/fiame-logo.webp"
               alt="FIAME"
-              width={395}
-              height={340}
+              width={790}
+              height={672}
               className="w-full"
             />
           </div>

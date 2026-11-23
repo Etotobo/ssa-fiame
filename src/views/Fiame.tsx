@@ -1,9 +1,11 @@
-import { CalendarDays, MapPin, Play, Ticket } from "lucide-react";
-import { AgendaCmMark, ButtonLink, PageHero, Section, ToComplete } from "@/components/site/ui";
+import { CalendarDays, Check, HeartPulse, Leaf, MapPin, Play, Ticket, Trophy } from "lucide-react";
+import { AgendaCmMark, ButtonLink, PageHero, Section } from "@/components/site/ui";
 import { COMMON, EXHIBIT, FIAME, REMINDER } from "@/site/content";
 import { pagePath } from "@/site/pages";
 import { registerLink, SSA, type Lang } from "@/site/ssa";
 import { typo } from "@/site/typo";
+
+const STRAND_ICON = { environnement: Leaf, sante: HeartPulse, projet: Trophy } as const;
 
 function Actions({ lang, onDark = false }: { lang: Lang; onDark?: boolean }) {
   return (
@@ -87,31 +89,68 @@ export function Fiame({ lang }: { lang: Lang }) {
         </div>
       </Section>
 
-      {/* What's on */}
+      {/* What's on: SSA's « Programme global » (21/11), three strands, then
+          the other highlights */}
       <Section tone="soft" title={FIAME.programmeTitle[lang]}>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {FIAME.programme.map((p) => (
-            <li key={p.title.fr} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-line">
-              <h3 className="text-lg font-bold text-brand-deep">{p.title[lang]}</h3>
-              <p className="mt-1 text-muted">{p.body[lang]}</p>
+        <ul className="grid gap-5 lg:grid-cols-3">
+          {FIAME.strands.map((st) => {
+            const Icon = STRAND_ICON[st.key];
+            return (
+              <li
+                key={st.key}
+                className="flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-line"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-soft">
+                    <Icon className="h-6 w-6 text-brand" aria-hidden />
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-extrabold leading-snug text-brand-deep">
+                      {st.title[lang]}
+                    </h3>
+                    <p className="text-sm font-semibold italic text-brand">{st.tagline[lang]}</p>
+                  </div>
+                </div>
+                <ul className="mt-4 grid gap-2">
+                  {st.points.map((pt) => (
+                    <li key={pt.fr} className="flex gap-2">
+                      <Check className="mt-1 h-4 w-4 shrink-0 text-brand" aria-hidden />
+                      <span>{pt[lang]}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
+        </ul>
+        <h3 className="mt-10 text-center text-xl font-extrabold text-brand-deep">
+          {FIAME.highlightsTitle[lang]}
+        </h3>
+        <ul className="mt-4 flex flex-wrap justify-center gap-2">
+          {FIAME.highlights.map((h) => (
+            <li
+              key={h.fr}
+              className="rounded-full bg-white px-4 py-2 font-semibold text-brand-deep shadow-sm ring-1 ring-line"
+            >
+              {h[lang]}
             </li>
           ))}
         </ul>
       </Section>
 
-      {/* Day by day: days 2–5 not given by SSA yet */}
+      {/* Day by day: the days SSA has given, then one line (SSA 21/11) */}
       <Section title={FIAME.daysTitle[lang]}>
         <ol className="mx-auto grid max-w-3xl gap-3">
           {FIAME.days.map((d) => (
             <li key={d.day.fr} className="rounded-2xl p-5 ring-1 ring-line">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="font-bold text-brand">{d.day[lang]}</h3>
-                {!d.done && <ToComplete lang={lang} />}
-              </div>
+              <h3 className="font-bold text-brand">{d.day[lang]}</h3>
               <p className="mt-1">{d.body[lang]}</p>
             </li>
           ))}
         </ol>
+        <p className="mx-auto mt-4 max-w-3xl rounded-2xl bg-brand-soft p-5 text-center font-semibold text-brand-deep">
+          {FIAME.daysSoon[lang]}
+        </p>
       </Section>
 
       {/* SSA's videos: a still and a link to YouTube, no player (weight) */}

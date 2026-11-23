@@ -36,6 +36,11 @@ body {
   outline: 3px solid var(--color-yellow);
   outline-offset: 2px;
 }
+/* the magazine's enlarged page: the dialog itself takes the focus when it
+   opens, no ring around the whole screen (its close button keeps its own) */
+dialog:focus-visible {
+  outline: none;
+}
 
 /* Typography (founder 21/11): balanced titles, no lone word at the end of a
    paragraph. Ignored by browsers that don't know them. */

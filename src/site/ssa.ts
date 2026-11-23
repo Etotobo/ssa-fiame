@@ -40,6 +40,9 @@ export const SSA = {
   // address in text (founder 21/11). When SSA sends its location, put the
   // link here and the button comes back on FIAME 2027 and Contact.
   mapsUrl: null as string | null,
+  // « À paraître » (the president's book) on the Magazine page: false until
+  // SSA agrees (founder 23/11); then true and it shows.
+  showBook: false as boolean,
   // YouTube videos (founder 21/11): a still and a link, no embedded player
   // (page weight). Titles as on YouTube.
   videos: [
